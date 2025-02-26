@@ -39,13 +39,13 @@ local Window = Rayfield:CreateWindow({
  
  
  
- local aimbotTab = Window:CreateTab("Main", "crosshair")
+ local mainTab = Window:CreateTab("Main", "crosshair")
  
  local Section = aimbotTab:CreateSection("Main")
  
  
  
- local Button = Tab:CreateButton({
+ local Button = mainTab:CreateButton({
    Name = "TP to AREA",
    Callback = function()
        local player = game.Players.LocalPlayer
@@ -58,7 +58,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 
- local Button = Tab:CreateButton({
+ local Button = mainTab:CreateButton({
    Name = "TP to lobby",
    Callback = function()
        local player = game.Players.LocalPlayer
@@ -72,14 +72,14 @@ local Window = Rayfield:CreateWindow({
 })
 
 
- local Button = Tab:CreateButton({
+ local Button = mainTab:CreateButton({
    Name = "Anti-Void",
    Callback = function()
        local part = Instance.new("Part")
        part.Size = Vector3.new(2048, 2, 2048)
        part.Position = Vector3.new(-407.43832, 374.78579, -3079.52807)
-       part.Anchored = false
-       part.CanCollide = false
+       part.Anchored = true
+       part.CanCollide = true
        part.Parent = workspace
    end,
 })
@@ -126,22 +126,6 @@ local Window = Rayfield:CreateWindow({
         getgenv().speed.speed = Value
     end,
  })
-
-
-local Toggle = playerTab:CreateToggle({
-    Name = "Let's go jump!",
-    CurrentValue = false,
-    Flag = "Toggle1",
-    Callback = function(Value)
-        local player = game.Players.LocalPlayer
-        if player and player.Character then
-            local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
-            if humanoid then
-                humanoid.JumpPower = Value and 50 or humanoid.JumpPower
-            end
-        end
-    end,
-})
  
  
  getgenv().speed = {
@@ -159,4 +143,3 @@ local Toggle = playerTab:CreateToggle({
     Duration = 6.5,
     Image = 4483362458,
  })
- 
