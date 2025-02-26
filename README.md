@@ -70,7 +70,19 @@ local Window = Rayfield:CreateWindow({
            -169.06395, 655.099365, -2993.25854)
    end,
 })
- 
+
+
+ local Button = Tab:CreateButton({
+   Name = "Anti-Void",
+   Callback = function()
+       local part = Instance.new("Part")
+       part.Size = Vector3.new(2048, 2, 2048)
+       part.Position = Vector3.new(-407.43832, 374.78579, -3079.52807)
+       part.Anchored = false
+       part.CanCollide = false
+       part.Parent = workspace
+   end,
+})
  
  
  
@@ -82,68 +94,11 @@ local Window = Rayfield:CreateWindow({
  local Toggle = visualsTab:CreateToggle({
     Name = "ESP players",
     CurrentValue = false,
-    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "oggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
         getgenv().chams.enabled = Value
     end,
  })
- 
-
- 
- local Slider = visualsTab:CreateSlider({
-    Name = "Ichor",
-    Range = {0, 10000000},
-    Increment = 1,
-    Suffix = "Ichor",
-    CurrentValue = 0,
-    Flag = "Slider1",
-    Callback = function(Value)
-        local player = game:GetService("Players").LocalPlayer
-        local ichor = player:FindFirstChild("Ichor")
-        if ichor then
-            ichor.Value = Value
-        end
-    end,
-})
-
-
-
-local Toggle = visualsTab:CreateToggle({
-    Name = "Anti-Staff (click me to check)",
-    CurrentValue = false,
-    Flag = "Toggle1", -- A flag is the identifier for the configuration file
-    Callback = function(Value)
-        if Value then
-            local player = game.Players.LocalPlayer
-            if player then
-                local targetPlayers = {"LoddylDev", "Masongamerobloxalt", "alifDan_azkaAltLol", "KasperWGardenDev", "xivannetta", "NO41C", "FakeDWSAdmi"}
-                for _, targetName in pairs(targetPlayers) do
-                    local targetPlayer = game.Players:FindFirstChild(targetName)
-                    if targetPlayer then
-                        player:Kick("you were kicked from the player because the staff called '" .. targetName .. "' entered the game.")
-                        return
-                    end
-                end
-            end
-        end
-    end,
-})
-
-
-
-local Toggle = visualsTab:CreateToggle({
-    Name = "Remove Fog",
-    CurrentValue = false,
-    Flag = "Toggle1",
-    Callback = function(Value)
-        if Value then
-            game.Lighting.FogEnd = 100000
-        else
-            game.Lighting.FogEnd = 1000
-        end
-    end,
-})
- 
  
  
  local playerTab = Window:CreateTab("Player", "crosshair")
